@@ -1,0 +1,42 @@
+---
+- name: Install FPM
+  apt:
+    name: "php{{ php_fpm_version }}-fpm"
+    state: present
+
+- name: Install FPM service definition
+  template:
+    src: "php-fpm.service.j2"
+    dest: "/lib/systemd/system/php{{ php_fpm_version }}-fpm.service"
+  register: fpm_service
+
+- name: Reload service definition
+  shell: "systemctl daemon-reload"
+  when: fpm_service.changed
+
+- name: Configure FPM
+  template:
+    src: php-fpm.conf.j2
+    dest: "/etc/php/{{ php_fpm_version }}/fpm/php-fpm.conf"
+  notify: restart fpm
+
+- name: Install default pool
+  template:
+    src: "pool.conf.j2"
+    dest: "/etc/php/7.2/fpm/pool.d/www.conf"
+  notify: restart fpm
+  when: php_fpm_custom_pool is not defined
+
+- name: Remove default connection pool
+  file:
+    path: "/etc/php/{{ php_fpm_version }}/fpm/pool.d/www.conf"
+    state: absent
+  notify: restart fpm
+  when: php_fpm_custom_pool is defined
+
+- name: Add custom connection pool
+  template:
+    src: "{{ php_fpm_custom_pool }}"
+    dest: "/etc/php/{{ php_fpm_version }}/fpm/pool.d/"
+  notify: restart fpm
+  when: php_fpm_custom_pool is defined
