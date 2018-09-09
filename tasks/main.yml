@@ -1,4 +1,10 @@
 ---
+- name: Add PHP 7 repo
+  apt_repository: >
+    repo=ppa:ondrej/php
+    update_cache=true
+  when: ansible_os_family == 'Debian'
+
 - name: Install FPM
   apt:
     name: "php{{ php_fpm_version }}-fpm"
