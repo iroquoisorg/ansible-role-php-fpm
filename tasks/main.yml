@@ -23,7 +23,7 @@
 - name: Install default pool
   template:
     src: "pool.conf.j2"
-    dest: "/etc/php/7.2/fpm/pool.d/www.conf"
+    dest: "/etc/php/{{ php_fpm_version }}/fpm/pool.d/www.conf"
   notify: restart fpm
   when: php_fpm_custom_pool is not defined
 
