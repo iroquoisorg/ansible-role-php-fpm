@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   role_name: php-fpm
-  author: leafnode
+  author: iroquoisorg
   description: role for php fpm
   license: BSD
   min_ansible_version: 2.5.4 # tested on this version, might work on older versions
