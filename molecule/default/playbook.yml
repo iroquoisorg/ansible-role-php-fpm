@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    ci_build: true
+  roles:
+    - role: ansible-role-php-fpm

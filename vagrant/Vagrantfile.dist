@@ -1,0 +1,24 @@
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'virtualbox'
+
+Vagrant.require_version ">= 2.2.1"
+Vagrant.configure(2) do |config|
+
+    config.vm.box = "bento/ubuntu-16.04"
+
+    config.vm.provider :virtualbox do |v|
+        v.gui = false
+        v.name = "ansible-role-php-fpm"
+        v.memory = 512
+    end
+
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+    config.vm.synced_folder "../", "/vagrant/ansible-role-php-fpm", id: "ansible", type: "rsync", rsync__exclude: ".git/"
+
+    config.vm.provision "ansible_local" do |ansible|
+        ansible.version = "2.5.4"
+        ansible.install_mode = "pip"
+        ansible.playbook = "ansible-role-php-fpm/molecule/default/playbook.yml"
+        ansible.become = true
+    end
+
+end

@@ -18,7 +18,7 @@
 
 - name: Reload service definition
   shell: "systemctl daemon-reload"
-  when: fpm_service.changed
+  when: fpm_service.changed and not ci_build
 
 - name: Configure FPM
   template:

@@ -18,3 +18,7 @@ php_fpm_socket: "/run/php/php{{ php_fpm_version }}-fpm.sock"
 php_fpm_clear_env: 'yes'
 
 ```
+
+# Development
+
+Please check [development guide](DEVELOPMENT.md) for details about developing and testing this role.

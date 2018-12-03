@@ -373,7 +373,7 @@ pm.max_spare_servers = 3
 ; pool configuration are added.
 ; Setting to "no" will make all environment variables available to PHP code
 ; via getenv(), $_ENV and $_SERVER.
-; Default Value: yes
+; Default Value: true
 clear_env = {{ php_fpm_clear_env }}
 
 ; Limits the extensions of the main script FPM will allow to parse. This can

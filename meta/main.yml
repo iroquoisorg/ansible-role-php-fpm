@@ -4,11 +4,11 @@ galaxy_info:
   author: iroquoisorg
   description: role for php fpm
   license: BSD
-  min_ansible_version: 2.5.4 # tested on this version, might work on older versions
+  min_ansible_version: 2.5.4  # tested on this version, might work on older versions
   platforms:
-  - name: Ubuntu
-    versions:
-    - 16.04
+    - name: Ubuntu
+      versions:
+        - 16.04
   galaxy_tags: []
 
 dependencies: []

@@ -1,3 +1,4 @@
 php_fpm_version: "{{ php_version | default('7.2') }}"
 php_fpm_socket: "/run/php/php{{ php_fpm_version }}-fpm.sock"
 php_fpm_clear_env: 'yes'
+ci_build: false
