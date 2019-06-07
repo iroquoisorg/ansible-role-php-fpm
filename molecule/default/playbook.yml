@@ -4,5 +4,10 @@
   become: true
   vars:
     ci_build: true
+    php_fpm_pm_max_children: 20
+    php_fpm_pm_start_servers: 4
+    php_fpm_pm_min_spare_servers: 2
+    php_fpm_pm_max_spare_servers: 6
+    php_fpm_pm_max_requests: 1000
   roles:
     - role: ansible-role-php-fpm
