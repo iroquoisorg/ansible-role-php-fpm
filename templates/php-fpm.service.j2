@@ -4,7 +4,7 @@ Documentation=man:php-fpm{{ php_fpm_version }}(8)
 After=network.target
 
 [Service]
-EnvironmentFile=/etc/environment
+EnvironmentFile={{ php_fpm_env_file }}
 Type=notify
 PIDFile=/run/php/php{{ php_fpm_version }}-fpm.pid
 ExecStart=/usr/sbin/php-fpm{{ php_fpm_version }} --nodaemonize --fpm-config /etc/php/{{ php_fpm_version }}/fpm/php-fpm.conf
