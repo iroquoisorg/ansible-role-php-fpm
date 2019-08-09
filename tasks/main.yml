@@ -15,6 +15,7 @@
     src: "php-fpm.service.j2"
     dest: "/lib/systemd/system/php{{ php_fpm_version }}-fpm.service"
   register: fpm_service
+  notify: restart fpm
 
 - name: Reload service definition
   shell: "systemctl daemon-reload"
